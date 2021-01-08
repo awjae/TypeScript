@@ -1,0 +1,12 @@
+// ts comfile 옵션을 설정할 수 있다.
+// https://www.typescriptlang.org/tsconfig
+{
+    "compilerOptions" : {
+        "allowJs": true,
+        "checkJs": true, //ts-check
+        "noImplicitAny": true //모든타입에 최소한 any 라도 넣어야한다.
+    }
+}
+
+//플레이그라운드
+//https://www.typescriptlang.org/play
