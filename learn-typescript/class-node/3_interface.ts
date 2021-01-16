@@ -48,7 +48,7 @@ var obj: StringRegexDictionary = {
     cssFile: /\.css$/,
     jsFile: /\.js$/,
 }
-obj['cssFile'] = 'a'; //인터페이스를 통해 이와같은 에러를 방지할수 있다. 
+//obj['cssFile'] = 'a'; //인터페이스를 통해 이와같은 에러를 방지할수 있다. 
 
 // 추론으로 활용 가능
 Object.keys(obj).forEach(function (value) {
@@ -56,10 +56,10 @@ Object.keys(obj).forEach(function (value) {
 })
 
 //인터페이스 확장
-interface Person {
-    name: string;
-    age: number;
-}
+// interface Person {
+//     name: string;
+//     age: number;
+// }
 
 interface Developer extends Person{
     language: string;    
