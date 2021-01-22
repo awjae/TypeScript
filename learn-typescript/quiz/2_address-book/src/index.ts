@@ -107,4 +107,11 @@ class AddressBook {
   /* ------------------------------------------------ */
 }
 
+
+// DOM API 조작
+let div = document.querySelector('div') as HTMLDivElement;
+if (div) {
+    div.innerText 
+}
+
 new AddressBook();
