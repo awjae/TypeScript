@@ -4,8 +4,24 @@
 let arr: [string, number] = ['hi', 10];
 
 //Enum 값들의 집합
+//이넘은 런타임시에 실제 객체 형태로 존재합니다. 예를 들어 아래와 같은 이넘 코드가 있을 때
 enum Avengers { Capt, IronMan, Thor }
 let hero: Avengers = Avengers.Capt;
+enum ResponseYN {
+  No = 0,
+  Yes = 1,
+}
+enum Direction {
+  Up = "UP",
+  Down = "DOWN",
+  Left = "LEFT",
+  Right = "RIGHT",
+}
+enum LogLevel {
+  ERROR, WARN, INFO, DEBUG
+}
+// 'ERROR' | 'WARN' | 'INFO' | 'DEBUG';
+type LogLevelStrings = keyof typeof LogLevel;
 
 //this 정의
 interface Vue {
@@ -57,3 +73,41 @@ type ZpositionType = PositionType & { z: number };
 interface PositionInterface {
   z: number;
 }
+
+
+// 합집 교집
+let age: number | string;
+interface Person {
+  이름: string;
+  age: number;
+}
+interface 개발자 {
+  이름: string;
+  skill: number;
+}
+type Capt = Person & 개발자;
+
+//Class
+class Developer {
+  readonly name: string;
+  constructor(theName: string) {
+      this.name = theName;
+  }
+}
+let john = new Developer("John");
+// john.name = "John"; // error! name is readonly.
+
+
+//제네릭 : 자바랑 같은 개념 / 여러 타입에서 동작하는 컴포넌트를 생성하는데 사용 : 타입 변수의 다형성  * any는 타입추론을 아예 수행하지않는다
+class Generic<T> {
+  private test: Array<T>;
+  constructor(test: Array<T>) {
+    this.test = test;
+  }
+  get testLength () {
+    return this.test.reduce((curr, acc) => <any>curr + <any>acc);
+  }
+}
+let a = new Generic(['a','a','a']);
+let b = new Generic([1,2,3,4]);
+console.log(a.testLength, b.testLength)
