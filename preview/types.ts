@@ -26,7 +26,6 @@ let getCount = vm.init();
 let count = getCount();
 console.log(count); // 10
 
-
 class Handler {
   info: string;
   onClick(this: void, e: Event) {
@@ -37,3 +36,24 @@ class Handler {
 }
 let handler = new Handler();
 handler.onClick(new Event('click'));
+
+
+//인터페이스 vs ts  :  type과 interface의 쓰임새를 생각하고 각각에 맞게 사용해주는 게 좋다고 생각
+//인터페이스의 경우에는 선언적 확장이 가능하다는 점
+//type은 경우 그저 interface처럼 구현을 한다기보다는 값을 담아두기 위해 사용
+//interface는 하나의 규격이기 때문에 그것을 이용해 구현하고자 할 때 사용하면 될 거라 생각
+type PositionType = {
+  x: number;
+  y: number;
+};
+interface PositionInterface {
+  x: number;
+  y: number;
+}
+interface ZpositionInterface extends PositionInterface {
+  z: number;
+}
+type ZpositionType = PositionType & { z: number };
+interface PositionInterface {
+  z: number;
+}
