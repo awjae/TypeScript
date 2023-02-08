@@ -111,3 +111,26 @@ class Generic<T> {
 let a = new Generic(['a','a','a']);
 let b = new Generic([1,2,3,4]);
 console.log(a.testLength, b.testLength)
+
+
+//never
+//never는 일반적으로 함수의 리턴 타입으로 사용됩니다. 
+//함수의 리턴 타입으로 never가 사용될 경우, 항상 오류를 출력하거나 리턴 값을 절대로 내보내지 않음을 의미
+function invalid(message:string): never {
+  throw new Error(message);
+}
+
+//unknown
+//any 와 유사하게 모든 값을 할당 가능, 하지만 다른 값으로 타입이 지정된 값은 할당 불가
+let variable: unknown
+
+let anyType: any = variable
+let booleanType: boolean = variable
+// Error: Type 'unknown' is not assignable to type 'boolean'.(2322)
+let numberType: number = variable
+//  Error: Type 'unknown' is not assignable to type 'number'.(2322)
+let stringType: string = variable
+//  Error: Type 'unknown' is not assignable to type 'string'.(2322)
+let objectType: object = variable
+//  Error: Type 'unknown' is not assignable to type 'object'.(2322)
+
