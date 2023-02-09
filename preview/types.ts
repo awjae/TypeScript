@@ -122,6 +122,7 @@ function invalid(message:string): never {
 
 //unknown
 //any 와 유사하게 모든 값을 할당 가능, 하지만 다른 값으로 타입이 지정된 값은 할당 불가
+//메서드 접근 불가
 let variable: unknown
 
 let anyType: any = variable
@@ -133,4 +134,31 @@ let stringType: string = variable
 //  Error: Type 'unknown' is not assignable to type 'string'.(2322)
 let objectType: object = variable
 //  Error: Type 'unknown' is not assignable to type 'object'.(2322)
+let variable: unknown
+variable.foo.bar // Error: Object is of type 'unknown'.(2571)
+variable[0] // Error
+variable.trigger() // Error
+variable() // Error
+new variable() // Error
+
+//any 를 보다 안전하게 활용할 수 있는 방법
+//Union Type "|"
+//배열(Array)을 사용
+//unknown Type
+function getMoney(money: string | number): number { return 0 }
+function anyFunc(val: any) {
+  val();
+}
+function getArrayElementLength(array: {length: number}[]): number[] {
+  return array.map(item => item.length);
+}
+console.log(getArrayElementLength(["A", "AB", "ABC"]));
+// [1, 2, 3]
+console.log(getArrayElementLength([1, 2, 3]));
+// [undefined, undefined, undefined]
+function unknownFunc(val: unknown) {
+  val();
+  //This expression is not callable.
+  //Type '{}' has no call signatures.ts(2349)
+}
 
